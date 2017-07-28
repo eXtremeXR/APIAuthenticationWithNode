@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start-dev": "nodemon app.js"
+    "start-dev": "nodemon app.js",
+    "test": ""
   },
   "author": "CodeWorkr",
   "license": "ISC",
@@ -13,7 +14,11 @@
     "express": "^4.15.3",
     "express-promise-router": "^2.0.0",
     "joi": "^10.6.0",
-    "morgan": "^1.8.2",
-    "nodemon": "^1.11.0"
+    "morgan": "^1.8.2"
+
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "jest": "^20.0.4"
   }
 }
