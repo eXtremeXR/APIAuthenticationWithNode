@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start-dev": "nodemon app.js",
-    "test": ""
+    "test": "jest"
   },
   "author": "CodeWorkr",
   "license": "ISC",
@@ -15,10 +15,10 @@
     "express-promise-router": "^2.0.0",
     "joi": "^10.6.0",
     "morgan": "^1.8.2"
-
   },
   "devDependencies": {
+    "jest": "^20.0.4",
     "nodemon": "^1.11.0",
-    "jest": "^20.0.4"
+    "supertest": "^3.0.0"
   }
 }

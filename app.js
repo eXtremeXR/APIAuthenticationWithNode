@@ -15,3 +15,5 @@ app.use('/users', require('./routes/users'));
 const port = process.env.PORT || 3000;
 app.listen(port);
 console.log(`Server listening at ${port}`);
+
+module.exports = app;
