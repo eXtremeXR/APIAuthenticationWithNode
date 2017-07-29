@@ -16,9 +16,11 @@
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.11.3",
     "morgan": "^1.8.2",
-    "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
   }
 }
