@@ -1,5 +1,5 @@
 # Branch for part Part_#6
-[Watch this episode on Youtube](https://www.youtube.com/watch?v=zx6jnaLuB9Q&list=PLSpJkDDmpFZ7GowbJE-mvX09zY9zfYatI)
+[Watch this episode on Youtube](https://www.youtube.com/watch?v=YxFZC8FtRao)
 
 
 ### API Authentication with Node 
