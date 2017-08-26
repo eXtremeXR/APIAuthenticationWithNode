@@ -1,9 +1,17 @@
 # API Authentication with Node 
-
 This is the project files for CodeWorkr's API Authentication with Node series on YouTube.
+
+### Phase one
+1. [Introduction](https://www.youtube.com/watch?v=zx6jnaLuB9Q&t=4s)
+2. [Cookies vs Tokens](https://www.youtube.com/watch?v=4Y5a_iKXihw)
+3. [Node/Express API Setup](https://www.youtube.com/watch?v=x_HRoXKo2es&t=2s)
+4. [Server-Side Validation](https://www.youtube.com/watch?v=XFpV8b5937M)
+5. [MongoDB/Mongoose](https://www.youtube.com/watch?v=QCJCglPLUgg)
+6. [JSON Web Tokens](https://www.youtube.com/watch?v=YxFZC8FtRao)
+7. [Passport and Strategies](https://www.youtube.com/watch?v=lbmOoZuElKI)
+8. [Bcrypt Explained](https://www.youtube.com/watch?v=Peww_cdgka4&t=1063s)
+
 Series link: [YouTube Playlist](https://www.youtube.com/watch?v=zx6jnaLuB9Q&list=PLSpJkDDmpFZ7GowbJE-mvX09zY9zfYatI)
-
-
 ### To view desired branch for each episode simply clone this git repo
 
 ```bash
