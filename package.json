@@ -9,6 +9,7 @@
   "author": "CodeWorkr",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "express-promise-router": "^2.0.0",
@@ -21,6 +22,6 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.11.0"
   }
 }
