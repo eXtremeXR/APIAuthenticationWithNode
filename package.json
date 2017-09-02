@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start-dev": "nodemon app.js"
+    "start-dev": "nodemon app.js",
+    "test": "mocha --timeout 5000 __tests__/**/*.test.js",
+    "report": "nyc --reporter=lcov mocha --timeout 5000 __tests__/**/*.test.js"
   },
   "author": "CodeWorkr",
   "license": "ISC",
@@ -30,5 +32,13 @@
     "rewire": "^2.5.2",
     "sinon": "^3.2.1",
     "sinon-chai": "^2.13.0"
+  },
+  "nyc": {
+    "exclude": [
+      "__tests__",
+      "node_modules"
+    ],
+    "cache": false,
+    "report-dir": "./__tests__/"
   }
 }
