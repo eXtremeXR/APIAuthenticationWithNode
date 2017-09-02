@@ -43,7 +43,8 @@ starting the project using yarn
 $ yarn start-dev
 ```
 
-```Code Coverage```
+##### Code Coverage
+
 |File                  |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
 |----------------------|----------|----------|----------|----------|----------------|
 | All files            |    90.53 |     62.5 |      100 |    90.43 |                |
