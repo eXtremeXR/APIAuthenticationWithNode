@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start-dev": "nodemon app.js",
-    "test": "mocha --timeout 5000 __tests__/**/*.test.js",
-    "report": "nyc --reporter=lcov mocha --timeout 5000 __tests__/**/*.test.js"
+    "test": "mocha --timeout 5000 __tests__/server/**/*.test.js",
+    "report": "nyc --reporter=lcov mocha --timeout 5000 __tests__/server/**/*.test.js"
   },
   "author": "CodeWorkr",
   "license": "ISC",
@@ -39,6 +39,6 @@
       "node_modules"
     ],
     "cache": false,
-    "report-dir": "./__tests__/"
+    "report-dir": "./__tests__/report"
   }
 }

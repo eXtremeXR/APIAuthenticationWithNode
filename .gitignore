@@ -7,3 +7,5 @@ package-lock.json
 /coverage
 npm-debug.log
 yarn-error.log
+.idea
+.nyc_output
