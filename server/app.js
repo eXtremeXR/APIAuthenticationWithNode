@@ -4,12 +4,19 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/APIAuthentication');
+if (process.env.NODE_ENV === 'test') {
+  mongoose.connect('mongodb://localhost/APIAuthenticationTEST', { useMongoClient: true });
+} else {
+  mongoose.connect('mongodb://localhost/APIAuthentication', { useMongoClient: true });
+}
 
 const app = express();
 
-// Middlewares
-app.use(morgan('dev'));
+// Middlewares moved morgan into if for clear tests
+if (!process.env.NODE_ENV === 'test') {
+  app.use(morgan('dev'));
+}
+
 app.use(bodyParser.json());
 
 // Routes
