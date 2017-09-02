@@ -43,6 +43,26 @@ starting the project using yarn
 $ yarn start-dev
 ```
 
+run unit tests
+```bash
+$ yarn test
+```
+
+genarate code coverage report
+```bash
+$ yarn report
+```
+
+run unit tests with nyc output in terminal
+```bash
+$ yarn nyc
+```
+
+run unit tests with nyc summery report
+```bash
+$ yarn text-report
+```
+
 ##### Code Coverage
 
 |File                  |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
