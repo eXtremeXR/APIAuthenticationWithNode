@@ -4,17 +4,18 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start-dev": "nodemon app.js",
-    "test": "mocha --timeout 5000 __tests__/server/**/*.test.js",
-    "report": "nyc --reporter=lcov mocha --timeout 5000 __tests__/server/**/*.test.js",
-    "text-report": "nyc --reporter=text-summary mocha --timeout 5000 __tests__/server/**/*.test.js",
-    "nyc": "nyc mocha --timeout 5000 __tests__/server/**/*.test.js"
+    "start-dev": "cross-env NODE_ENV=prod nodemon app.js",
+    "test": "cross-env NODE_ENV=test mocha --timeout 5000 __tests__/server/**/*.test.js",
+    "report": "cross-env NODE_ENV=test nyc --reporter=lcov mocha --timeout 5000 __tests__/server/**/*.test.js",
+    "text-report": "cross-env NODE_ENV=test nyc --reporter=text-summary mocha --timeout 5000 __tests__/server/**/*.test.js",
+    "nyc": "cross-env NODE_ENV=test nyc mocha --timeout 5000 __tests__/server/**/*.test.js"
   },
   "author": "CodeWorkr",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
+    "cross-env": "^5.0.5",
     "express": "^4.15.3",
     "express-promise-router": "^2.0.0",
     "joi": "^10.6.0",
