@@ -52,5 +52,37 @@ describe('Users controller', () => {
     });
   });
 
+  describe('signIn', () => {
+    it('should return token when signIn called', () => {
+      sandbox.spy(res, 'json');
+      sandbox.spy(res, 'status');
+
+      /* this test we are going to only test for 200.
+          and that res.json was called only ones
+          next test we are going to fake jwt token */
+      userController.signIn(req, res).then(() => {
+        expect(res.status).to.have.been.calledWith(200);
+        expect(res.json.callCount).to.equal(1);
+      });
+    });
+
+    it('should return fake token using rewire', () => {
+      sandbox.spy(res, 'json');
+      sandbox.spy(res, 'status');
+
+      // fake jwt token with rewire
+      let signToken = userController.__set__('signToken', function(user) {
+        return 'fakeToken';
+      });
+
+      // we expect res json to have been called with our fake token
+      userController.signIn(req, res).then(() => {
+        expect(res.json).to.have.been.calledWith({ token: 'fakeToken' });
+        signToken();
+      });
+    });
+  });
+
+
 
 });
