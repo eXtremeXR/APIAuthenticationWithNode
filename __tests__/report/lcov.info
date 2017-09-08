@@ -1,5 +1,5 @@
 TN:
-SF:/Users/michael/zStudy/APIAuthenticationWithNode/server/app.js
+SF:C:\Users\eXtreme\Documents\Web Development\APIAuthenticationWithNode\server\app.js
 FNF:0
 FNH:0
 DA:1,1
@@ -26,7 +26,7 @@ BRF:4
 BRH:2
 end_of_record
 TN:
-SF:/Users/michael/zStudy/APIAuthenticationWithNode/server/passport.js
+SF:C:\Users\eXtreme\Documents\Web Development\APIAuthenticationWithNode\server\passport.js
 FN:12,(anonymous_0)
 FN:32,(anonymous_1)
 FNF:2
@@ -68,7 +68,7 @@ BRF:6
 BRH:3
 end_of_record
 TN:
-SF:/Users/michael/zStudy/APIAuthenticationWithNode/server/configuration/index.js
+SF:C:\Users\eXtreme\Documents\Web Development\APIAuthenticationWithNode\server\configuration\index.js
 FNF:0
 FNH:0
 DA:1,1
@@ -78,7 +78,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/michael/zStudy/APIAuthenticationWithNode/server/controllers/users.js
+SF:C:\Users\eXtreme\Documents\Web Development\APIAuthenticationWithNode\server\controllers\users.js
 FN:5,(anonymous_0)
 FN:15,(anonymous_1)
 FN:35,(anonymous_2)
@@ -115,7 +115,7 @@ BRF:2
 BRH:2
 end_of_record
 TN:
-SF:/Users/michael/zStudy/APIAuthenticationWithNode/server/helpers/routeHelpers.js
+SF:C:\Users\eXtreme\Documents\Web Development\APIAuthenticationWithNode\server\helpers\routeHelpers.js
 FN:4,(anonymous_0)
 FN:5,(anonymous_1)
 FNF:2
@@ -141,7 +141,7 @@ BRF:4
 BRH:3
 end_of_record
 TN:
-SF:/Users/michael/zStudy/APIAuthenticationWithNode/server/models/user.js
+SF:C:\Users\eXtreme\Documents\Web Development\APIAuthenticationWithNode\server\models\user.js
 FN:19,(anonymous_0)
 FN:33,(anonymous_1)
 FNF:2
@@ -171,7 +171,7 @@ BRF:0
 BRH:0
 end_of_record
 TN:
-SF:/Users/michael/zStudy/APIAuthenticationWithNode/server/routes/users.js
+SF:C:\Users\eXtreme\Documents\Web Development\APIAuthenticationWithNode\server\routes\users.js
 FNF:0
 FNH:0
 DA:1,1
