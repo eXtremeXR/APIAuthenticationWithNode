@@ -67,19 +67,12 @@ $ yarn text-report
 
 |File                  |  % Stmts | % Branch |  % Funcs |  % Lines |Uncovered Lines |
 |----------------------|----------|----------|----------|----------|----------------|
-|All files             |    90.53 |     62.5 |      100 |    90.43 |                |
-| server               |    81.08 |       50 |      100 |    81.08 |                |
-|  app.js              |    85.71 |       50 |      100 |    85.71 |          10,17 |
-|  passport.js         |    78.26 |       50 |      100 |    78.26 | 19,25,39,47,53 |
-| server/configuration |      100 |      100 |      100 |      100 |                |
+|All files             |      100 |      100 |      100 |      100 |                |
+| configuration        |      100 |      100 |      100 |      100 |                |
 |  index.js            |      100 |      100 |      100 |      100 |                |
-| server/controllers   |      100 |      100 |      100 |      100 |                |
+| controllers          |      100 |      100 |      100 |      100 |                |
 |  users.js            |      100 |      100 |      100 |      100 |                |
-| server/helpers       |      100 |       75 |      100 |      100 |                |
-|  routeHelpers.js     |      100 |       75 |      100 |      100 |             11 |
-| server/models        |    88.24 |      100 |      100 |    88.24 |                |
-|  user.js             |    88.24 |      100 |      100 |    88.24 |          29,37 |
-| server/routes        |      100 |      100 |      100 |      100 |                |
+| routes               |      100 |      100 |      100 |      100 |                |
 |  users.js            |      100 |      100 |      100 |      100 |                |
 
 ## Happy Coding!
