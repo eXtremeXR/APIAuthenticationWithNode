@@ -6,7 +6,8 @@ module.exports = {
       clientSecret: ''
     },
     facebook: {
-
+      clientID: '',
+      clientSecret: ''
     }
   }
 };

@@ -23,6 +23,7 @@
     "mongoose": "^4.11.3",
     "morgan": "^1.8.2",
     "passport": "^0.3.2",
+    "passport-facebook-token": "^3.3.0",
     "passport-google-plus-token": "^2.1.0",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0"
