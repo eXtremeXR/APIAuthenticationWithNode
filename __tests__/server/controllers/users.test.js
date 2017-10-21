@@ -83,6 +83,7 @@ describe('Users controller', () => {
       });
     });
   });
+
   describe('signUp', () => {
     it('should return 403 if the user is already save in the db.', () => {
       sandbox.spy(res, 'json');
@@ -137,6 +138,44 @@ describe('Users controller', () => {
         expect(res.json).to.have.been.calledWith({ token: 'fakeTokenNumberTwo' });
         signToken();
       });
+    });
+  });
+
+  describe('googleOAuth', () => {
+    it('should return token if user passed the passport google oauth', async () => {
+      sandbox.spy(res, 'json');
+      sandbox.spy(res, 'status');
+
+      let signToken = userController.__set__('signToken', user => 'fakeTokenFromGoogleController');
+
+      try {
+        await userController.googleOAuth(req, res);
+
+        expect(res.status).to.have.been.calledWith(200);
+        expect(res.json).to.have.been.calledWith({ token: 'fakeTokenFromGoogleController' });
+        signToken();
+      } catch (error) {
+        throw new Error(error);
+      }
+    });
+  });
+
+  describe('facebookOAuth', () => {
+    it('should return token if user passed the passport facebook oauth', async () => {
+      sandbox.spy(res, 'json');
+      sandbox.spy(res, 'status');
+
+      let signToken = userController.__set__('signToken', user => 'fakeTokenFromFacebookController');
+
+      try {
+        await userController.facebookOAuth(req, res);
+
+        expect(res.status).to.have.been.calledWith(200);
+        expect(res.json).to.have.been.calledWith({ token: 'fakeTokenFromFacebookController' });
+        signToken();
+      } catch (error) {
+        throw new Error(error);
+      }
     });
   });
 });
