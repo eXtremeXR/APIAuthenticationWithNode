@@ -6,8 +6,6 @@ services:
 before_script:
   - yarn install
 script:
-  - node ./dbSeed/seed
-  - sleep 1
   - yarn test
 cache:
   directories:
