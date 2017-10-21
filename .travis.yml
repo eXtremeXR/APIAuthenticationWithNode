@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "8"
+services:
+  - mongodb
+before_script:
+  - yarn install
+script:
+  - node ./dbSeed/seed
+  - sleep 1
+  - yarn test
+cache:
+  directories:
+    - node_modules
