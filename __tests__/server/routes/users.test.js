@@ -36,13 +36,11 @@ describe('Users route', () => {
   });
 
   // after all test have run we drop our test database
-  after('droping test db', done => {
-    mongoose.connection.dropDatabase(() => {
+  after('droping test db', async () => {
+    await mongoose.connection.dropDatabase(() => {
       console.log('\n Test database dropped');
     });
-    mongoose.connection.close(() => {
-      done();
-    });
+    await mongoose.connection.close();
   });
 
   describe('signup', () => {
