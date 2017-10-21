@@ -2,12 +2,12 @@ module.exports = {
   JWT_SECRET: 'codeworkrauthentication',
   oauth: {
     google: {
-      clientID: '',
-      clientSecret: ''
+      clientID: 'number',
+      clientSecret: 'string'
     },
     facebook: {
-      clientID: '',
-      clientSecret: ''
+      clientID: 'number',
+      clientSecret: 'string'
     }
   }
 };
