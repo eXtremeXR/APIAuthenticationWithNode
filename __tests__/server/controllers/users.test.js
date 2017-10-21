@@ -17,13 +17,15 @@ let sandbox = null;
 
 describe('Users controller', () => {
   let req = {
-    user: { id: faker.random.number() },
+    user: {
+      id: faker.random.number(),
+    },
     value: {
       body: {
         email: faker.internet.email(),
-        password: faker.internet.password()
-      }
-    }
+        password: faker.internet.password(),
+      },
+    },
   };
   let res = {
     json: function() {
@@ -31,7 +33,7 @@ describe('Users controller', () => {
     },
     status: function() {
       return this;
-    }
+    },
   };
 
   beforeEach(() => {
@@ -43,101 +45,147 @@ describe('Users controller', () => {
   });
 
   describe('secret', () => {
-    it('should return resource when called', () => {
+    it('should return resource when called', async () => {
       sandbox.spy(console, 'log');
       sandbox.spy(res, 'json');
 
-      return userController.secret(req, res).then(() => {
+      try {
+        await userController.secret(req, res);
+
         expect(console.log).to.have.been.called;
-        expect(res.json.calledWith({ secret: 'resource' })).to.be.ok;
-        expect(res.json).to.have.been.calledWith({ secret: 'resource' });
-      });
+        expect(
+          res.json.calledWith({
+            secret: 'resource',
+          }),
+        ).to.be.ok;
+        expect(res.json).to.have.been.calledWith({
+          secret: 'resource',
+        });
+      } catch (error) {
+        throw new Error(error);
+      }
     });
   });
 
   describe('signIn', () => {
-    it('should return token when signIn called', () => {
+    it('should return token when signIn called', async () => {
       sandbox.spy(res, 'json');
       sandbox.spy(res, 'status');
 
-      /* this test we are going to only test for 200.
-          and that res.json was called only ones
-          next test we are going to fake jwt token */
-      return userController.signIn(req, res).then(() => {
+      try {
+        await userController.signIn(req, res);
+
         expect(res.status).to.have.been.calledWith(200);
         expect(res.json.callCount).to.equal(1);
-      });
+      } catch (error) {
+        throw new Error(error);
+      }
     });
 
-    it('should return fake token using rewire', () => {
+    it('should return fake token using rewire', async () => {
       sandbox.spy(res, 'json');
       sandbox.spy(res, 'status');
 
       // fake jwt token with rewire
       let signToken = userController.__set__('signToken', user => 'fakeToken');
 
-      // we expect res json to have been called with our fake token
-      return userController.signIn(req, res).then(() => {
-        expect(res.json).to.have.been.calledWith({ token: 'fakeToken' });
+      try {
+        await userController.signIn(req, res);
+
+        expect(res.json).to.have.been.calledWith({
+          token: 'fakeToken',
+        });
         signToken();
-      });
+      } catch (error) {
+        throw new Error(error);
+      }
     });
   });
 
   describe('signUp', () => {
-    it('should return 403 if the user is already save in the db.', () => {
+    it('should return 403 if the user is already save in the db.', async () => {
       sandbox.spy(res, 'json');
       sandbox.spy(res, 'status');
-      sandbox.stub(User, 'findOne').returns(Promise.resolve({ id: faker.random.number() }));
+      sandbox.stub(User, 'findOne').returns(
+        Promise.resolve({
+          id: faker.random.number(),
+        }),
+      );
 
-      return userController.signUp(req, res).then(() => {
+      try {
+        await userController.signUp(req, res);
+
         expect(res.status).to.have.been.calledWith(403);
-        expect(res.json).to.have.been.calledWith({ error: 'Email is already in use' });
-      });
+        expect(res.json).to.have.been.calledWith({
+          error: 'Email is already in use',
+        });
+      } catch (error) {
+        throw new Error(error);
+      }
     });
 
-    it('should return 200 if user is not in db and it was saved', () => {
+    it('should return 200 if user is not in db and it was saved', async () => {
       sandbox.spy(res, 'json');
       sandbox.spy(res, 'status');
       sandbox.stub(User, 'findOne').returns(Promise.resolve(false));
-      sandbox.stub(User.prototype, 'save').returns(Promise.resolve({ id: faker.random.number() }));
+      sandbox.stub(User.prototype, 'save').returns(
+        Promise.resolve({
+          id: faker.random.number(),
+        }),
+      );
 
-      // next test we will fake token with our fake token to see that
-      // json body has been called with it at the moment we only count
-      // the callCount on json spy should be 1
-      return userController.signUp(req, res).then(() => {
+      try {
+        await userController.signUp(req, res);
+
         expect(res.status).to.have.been.calledWith(200);
         expect(res.json.callCount).to.equal(1);
-      });
+      } catch (error) {
+        throw new Error(error);
+      }
     });
 
-    it('should return 200 if user is not in db using callback done', done => {
+    it('should return 200 if user is not in db using callback done', async () => {
       sandbox.spy(res, 'json');
       sandbox.spy(res, 'status');
       sandbox.stub(User, 'findOne').returns(Promise.resolve(false));
-      sandbox.stub(User.prototype, 'save').returns(Promise.resolve({ id: faker.random.number() }));
+      sandbox.stub(User.prototype, 'save').returns(
+        Promise.resolve({
+          id: faker.random.number(),
+        }),
+      );
 
-      /*  example with done callback, we will call it in the then function
-          as we know the userController.singUp returns a promise
-          and expect result spy to have been called as expected */
-      userController.signUp(req, res).then(done());
+      try {
+        await userController.signUp(req, res);
 
-      expect(res.status).to.have.been.calledWith(200);
-      expect(res.json.callCount).to.equal(1);
+        expect(res.status).to.have.been.calledWith(200);
+        expect(res.json.callCount).to.equal(1);
+      } catch (error) {
+        throw new Error(error);
+      }
     });
 
-    it('should return fake token in res.json', () => {
+    it('should return fake token in res.json', async () => {
       sandbox.spy(res, 'json');
       sandbox.spy(res, 'status');
       sandbox.stub(User, 'findOne').returns(Promise.resolve(false));
-      sandbox.stub(User.prototype, 'save').returns(Promise.resolve({ id: faker.random.number() }));
+      sandbox.stub(User.prototype, 'save').returns(
+        Promise.resolve({
+          id: faker.random.number(),
+        }),
+      );
 
       let signToken = userController.__set__('signToken', user => 'fakeTokenNumberTwo');
 
-      return userController.signUp(req, res).then(() => {
-        expect(res.json).to.have.been.calledWith({ token: 'fakeTokenNumberTwo' });
+      try {
+        await userController.signUp(req, res);
+
+        expect(res.json).to.have.been.calledWith({
+          token: 'fakeTokenNumberTwo',
+        });
         signToken();
-      });
+      } catch (error) {
+        throw new Error(error);
+      }
     });
   });
 
@@ -152,7 +200,9 @@ describe('Users controller', () => {
         await userController.googleOAuth(req, res);
 
         expect(res.status).to.have.been.calledWith(200);
-        expect(res.json).to.have.been.calledWith({ token: 'fakeTokenFromGoogleController' });
+        expect(res.json).to.have.been.calledWith({
+          token: 'fakeTokenFromGoogleController',
+        });
         signToken();
       } catch (error) {
         throw new Error(error);
@@ -171,7 +221,9 @@ describe('Users controller', () => {
         await userController.facebookOAuth(req, res);
 
         expect(res.status).to.have.been.calledWith(200);
-        expect(res.json).to.have.been.calledWith({ token: 'fakeTokenFromFacebookController' });
+        expect(res.json).to.have.been.calledWith({
+          token: 'fakeTokenFromFacebookController',
+        });
         signToken();
       } catch (error) {
         throw new Error(error);
