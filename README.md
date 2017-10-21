@@ -1,6 +1,8 @@
 # API Authentication with Node 
 This is the project files for CodeWorkr's API Authentication with Node series on YouTube.
 
+[![Build Status](https://travis-ci.org/Alaev/APIAuthenticationWithNode.svg?branch=master)](https://travis-ci.org/Alaev/APIAuthenticationWithNode)
+
 ### Phase one
 1. [Introduction](https://www.youtube.com/watch?v=zx6jnaLuB9Q)
 2. [Cookies vs Tokens](https://www.youtube.com/watch?v=4Y5a_iKXihw)
