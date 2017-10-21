@@ -1,30 +1,29 @@
-if(process.env.NODE_ENV === 'test'){
+if (process.env.NODE_ENV === 'test') {
   module.exports = {
     JWT_SECRET: 'codeworkrauthentication',
     oauth: {
       google: {
         clientID: 'number',
-        clientSecret: 'string'
+        clientSecret: 'string',
       },
       facebook: {
         clientID: 'number',
-        clientSecret: 'string'
-      }
-    }
+        clientSecret: 'string',
+      },
+    },
   };
-}else{
+} else {
   module.exports = {
     JWT_SECRET: '',
     oauth: {
       google: {
         clientID: '',
-        clientSecret: ''
+        clientSecret: '',
       },
       facebook: {
         clientID: '',
-        clientSecret: ''
-      }
-    }
+        clientSecret: '',
+      },
+    },
   };
 }
-
