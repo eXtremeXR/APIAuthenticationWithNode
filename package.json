@@ -42,6 +42,7 @@
   "nyc": {
     "exclude": [
       "server/app.js",
+      "server/configuration/index.js",
       "server/passport.js",
       "server/models/**/*.js",
       "server/helpers/**/*.js",
