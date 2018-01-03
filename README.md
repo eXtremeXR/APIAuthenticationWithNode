@@ -17,6 +17,9 @@ This is the project files for CodeWorkr's API Authentication with Node series on
 11. [Google OAuth](https://youtu.be/JgSLf-HS5gg)
 12. [Facebook OAuth](https://youtu.be/MXle6TrjI64)
 
+### Phase two
+13. [React Setup](https://youtu.be/NZdji3u5t4M)
+
 Series link: [YouTube Playlist](https://www.youtube.com/watch?v=zx6jnaLuB9Q&list=PLSpJkDDmpFZ7GowbJE-mvX09zY9zfYatI)
 ### To view desired branch for each episode simply clone this git repo
 

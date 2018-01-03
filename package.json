@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-dev": "cross-env NODE_ENV=prod nodemon index.js",
+    "server-dev": "cross-env NODE_ENV=prod nodemon server/index.js",
+    "client-dev": "npm start --prefix client",
+    "start-dev": "concurrently \"npm run server-dev\" \"npm run client-dev\"",
     "test": "cross-env NODE_ENV=test mocha --timeout 5000 __tests__/server/**/*.test.js",
     "report": "cross-env NODE_ENV=test nyc --reporter=lcov mocha --timeout 5000 __tests__/server/**/*.test.js",
     "text-report": "cross-env NODE_ENV=test nyc --reporter=text-summary mocha --timeout 5000 __tests__/server/**/*.test.js",
@@ -15,6 +17,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
+    "concurrently": "^3.5.1",
     "cross-env": "^5.0.5",
     "express": "^4.15.3",
     "express-promise-router": "^2.0.0",
