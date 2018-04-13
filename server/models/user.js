@@ -44,7 +44,8 @@ userSchema.pre('save', async function (next) {
     if (this.method !== 'local') {
       next();
     }
-
+    //the user schema is instantiated
+    const user = this;
     //check if the user has been modified to know if the password has already been hashed
     if (!user.isModified('local.password')) {
       next();
