@@ -9,7 +9,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.0.17",
     "redux": "^4.0.0",
-    "redux-form": "^7.4.2"
+    "redux-form": "^7.4.2",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
