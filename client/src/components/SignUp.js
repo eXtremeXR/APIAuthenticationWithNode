@@ -17,9 +17,6 @@ class SignUp extends Component {
   }
 
   async onSubmit(formData) {
-    console.log('onSubmit() got called');
-    console.log('formData', formData);
-    // We need to call some actioncreator
     await this.props.signUp(formData);
     if (!this.props.errorMessage) {
       this.props.history.push('/dashboard');
@@ -27,8 +24,6 @@ class SignUp extends Component {
   }
 
   async responseGoogle(res) {
-    console.log('responseGoogle', res);
-    console.log('typeof res', typeof res);
     await this.props.oauthGoogle(res.accessToken);
     if (!this.props.errorMessage) {
       this.props.history.push('/dashboard');
@@ -36,7 +31,6 @@ class SignUp extends Component {
   }
 
   async responseFacebook(res) {
-    console.log('responseFacebook', res);
     await this.props.oauthFacebook(res.accessToken);
     if (!this.props.errorMessage) {
       this.props.history.push('/dashboard');

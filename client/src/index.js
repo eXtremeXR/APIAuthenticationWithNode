@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
+import axios from 'axios';
 
 import registerServiceWorker from './registerServiceWorker';
 import App from './components/App';
@@ -13,7 +14,10 @@ import SignIn from './components/SignIn';
 import Dashboard from './components/Dashboard';
 import reducers from './reducers';
 
+import authGuard from './components/HOCs/authGuard';
+
 const jwtToken = localStorage.getItem('JWT_TOKEN');
+axios.defaults.headers.common['Authorization'] = jwtToken;
 
 ReactDOM.render(
   <Provider store={createStore(reducers, {
@@ -27,7 +31,7 @@ ReactDOM.render(
         <Route exact path="/" component={Home} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
-        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/dashboard" component={authGuard(Dashboard)} />
       </App>
     </BrowserRouter>
   </Provider>, 
