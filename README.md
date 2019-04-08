@@ -1,4 +1,6 @@
 # API Authentication with Node 
+> Modern Full-Stack Starter/Tutorial Using React/Redux/Node/Mongoose.
+
 This is the project files for CodeWorkr's API Authentication with Node series on YouTube.
 
 [![Build Status](https://travis-ci.org/Alaev/APIAuthenticationWithNode.svg?branch=master)](https://travis-ci.org/Alaev/APIAuthenticationWithNode)
@@ -20,6 +22,13 @@ This is the project files for CodeWorkr's API Authentication with Node series on
 ### Phase two
 13. [React Setup](https://youtu.be/NZdji3u5t4M)
 14. [React UI with Routing](https://youtu.be/BerEJPQOwOE)
+15. [Adding Redux and Redux Form](https://youtu.be/WRlw4lEijUk)
+16. [Action Creators, Actions and Reducers](https://youtu.be/rIdHDaoCcXw)
+17. [Google & Facebook OAuth Integration](https://youtu.be/W87udYTA1rw)
+18. [React Higher Order Components](https://youtu.be/sKtSwu9vvDk)
+
+### Phase three - Improvements!
+19. [Improving - Introduction](https://youtu.be/LmElmaidFWg)
 
 Series link: [YouTube Playlist](https://www.youtube.com/watch?v=zx6jnaLuB9Q&list=PLSpJkDDmpFZ7GowbJE-mvX09zY9zfYatI)
 ### To view desired branch for each episode simply clone this git repo
