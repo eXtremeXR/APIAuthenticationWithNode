@@ -14,7 +14,7 @@ const userSchema = new Schema({
       type: String,
       lowercase: true
     },
-    password: { 
+    password: {
       type: String
     }
   },
@@ -38,13 +38,18 @@ const userSchema = new Schema({
   }
 });
 
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   try {
     console.log('entered');
     if (this.method !== 'local') {
       next();
     }
-
+    //the user schema is instantiated
+    const user = this;
+    //check if the user has been modified to know if the password has already been hashed
+    if (!user.isModified('local.password')) {
+      next();
+    }
     // Generate a salt
     const salt = await bcrypt.genSalt(10);
     // Generate a password hash (salt + hash)
@@ -53,15 +58,15 @@ userSchema.pre('save', async function(next) {
     this.local.password = passwordHash;
     console.log('exited');
     next();
-  } catch(error) {
+  } catch (error) {
     next(error);
   }
 });
 
-userSchema.methods.isValidPassword = async function(newPassword) {
+userSchema.methods.isValidPassword = async function (newPassword) {
   try {
     return await bcrypt.compare(newPassword, this.local.password);
-  } catch(error) {
+  } catch (error) {
     throw new Error(error);
   }
 }
