@@ -6,9 +6,9 @@ const cors = require('cors');
 
 mongoose.Promise = global.Promise;
 if (process.env.NODE_ENV === 'test') {
-  mongoose.connect('mongodb://localhost/APIAuthenticationTEST', { useMongoClient: true });
+  mongoose.connect('mongodb://localhost/APIAuthenticationTEST', { useNewUrlParser: true });
 } else {
-  mongoose.connect('mongodb://localhost/APIAuthentication', { useMongoClient: true });
+  mongoose.connect('mongodb://localhost/APIAuthentication', { useNewUrlParser: true });
 }
 
 const app = express();

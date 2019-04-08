@@ -14,15 +14,15 @@ if (process.env.NODE_ENV === 'test') {
   };
 } else {
   module.exports = {
-    JWT_SECRET: '',
+    JWT_SECRET: 'codeworkrauthentication',
     oauth: {
       google: {
-        clientID: '',
-        clientSecret: '',
+        clientID: 'number',
+        clientSecret: 'string',
       },
       facebook: {
-        clientID: '',
-        clientSecret: '',
+        clientID: 'number',
+        clientSecret: 'string',
       },
     },
   };

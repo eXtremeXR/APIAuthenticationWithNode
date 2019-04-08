@@ -59,13 +59,6 @@ export const signUp = data => {
   };
 }
 
-export const signOut = () => {
-  return dispatch => {
-    localStorage.removeItem('JWT_TOKEN');
-    axios.defaults.headers.common['Authorization'] = '';
-  };
-}
-
 export const signIn = data => {
   return async dispatch => {
     try {

@@ -76,14 +76,14 @@ class SignUp extends Component {
               Or sign up using third-party services
             </div>
             <FacebookLogin
-              appId=""
+              appId="string"
               textButton="Facebook"
               fields="name,email,picture"
               callback={this.responseFacebook}
               cssClass="btn btn-outline-primary"
             />
             <GoogleLogin 
-              clientId=""
+              clientId="string"
               buttonText="Google"
               onSuccess={this.responseGoogle}
               onFailure={this.responseGoogle}
