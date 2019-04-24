@@ -30,6 +30,8 @@ Series link: [YouTube Playlist](https://www.youtube.com/watch?v=zx6jnaLuB9Q&list
 
 ### Phase III - Improvements!
 19. [Improving - Introduction](https://youtu.be/LmElmaidFWg)
+20. [Improving - Updating Dependencies](https://youtu.be/pnl1ecgDAYw)
+21. [Improving - Linking Accounts](https://youtu.be/7yAmV17ufUY)
 
 ### To view desired branch for each episode simply clone this git repo
 
