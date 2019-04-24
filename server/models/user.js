@@ -4,9 +4,8 @@ const Schema = mongoose.Schema;
 
 // Create a schema
 const userSchema = new Schema({
-  method: {
-    type: String,
-    enum: ['local', 'google', 'facebook'],
+  methods: {
+    type: [String],
     required: true
   },
   local: {
@@ -41,7 +40,7 @@ const userSchema = new Schema({
 userSchema.pre('save', async function (next) {
   try {
     console.log('entered');
-    if (this.method !== 'local') {
+    if (!this.methods.includes('local')) {
       next();
     }
     //the user schema is instantiated

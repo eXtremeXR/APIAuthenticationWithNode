@@ -10,8 +10,9 @@ const User = require('./models/user');
 // JSON WEB TOKENS STRATEGY
 passport.use(new JwtStrategy({
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
-  secretOrKey: config.JWT_SECRET
-}, async (payload, done) => {
+  secretOrKey: config.JWT_SECRET,
+  passReqToCallback: true
+}, async (req, payload, done) => {
   try {
     // Find the user specified in token
     const user = await User.findById(payload.sub);
@@ -22,6 +23,7 @@ passport.use(new JwtStrategy({
     }
 
     // Otherwise, return the user
+    req.user = user;
     done(null, user);
   } catch(error) {
     done(error, false);
@@ -31,29 +33,60 @@ passport.use(new JwtStrategy({
 // Google OAuth Strategy
 passport.use('googleToken', new GooglePlusTokenStrategy({
   clientID: config.oauth.google.clientID,
-  clientSecret: config.oauth.google.clientSecret
-}, async (accessToken, refreshToken, profile, done) => {
+  clientSecret: config.oauth.google.clientSecret,
+  passReqToCallback: true,
+}, async (req, accessToken, refreshToken, profile, done) => {
   try {
+    // Could get accessed in two ways:
+    // 1) When registering for the first time
+    // 2) When linking account to the existing one
+
     // Should have full user profile over here
     console.log('profile', profile);
     console.log('accessToken', accessToken);
     console.log('refreshToken', refreshToken);
 
-    const existingUser = await User.findOne({ "google.id": profile.id });
-    if (existingUser) {
-      return done(null, existingUser);
-    }
-
-    const newUser = new User({
-      method: 'google',
-      google: {
+    if (req.user) {
+      // We're already logged in, time for linking account!
+      // Add Google's data to an existing account
+      req.user.methods.push('google')
+      req.user.google = {
         id: profile.id,
         email: profile.emails[0].value
       }
-    });
+      await req.user.save()
+      return done(null, req.user);
+    } else {
+      // We're in the account creation process
+      let existingUser = await User.findOne({ "google.id": profile.id });
+      if (existingUser) {
+        return done(null, existingUser);
+      }
 
-    await newUser.save();
-    done(null, newUser);
+      // Check if we have someone with the same email
+      existingUser = await User.findOne({ "local.email": profile.emails[0].value })
+      if (existingUser) {
+        // We want to merge google's data with local auth
+        existingUser.methods.push('google')
+        existingUser.google = {
+          id: profile.id,
+          email: profile.emails[0].value
+        }
+        await existingUser.save()
+        return done(null, existingUser);
+      }
+
+      const newUser = new User({
+        methods: ['google'],
+        google: {
+          id: profile.id,
+          email: profile.emails[0].value
+        }
+      });
+  
+      await newUser.save();
+      done(null, newUser);
+    }
   } catch(error) {
     done(error, false, error.message);
   }
@@ -61,28 +94,55 @@ passport.use('googleToken', new GooglePlusTokenStrategy({
 
 passport.use('facebookToken', new FacebookTokenStrategy({
   clientID: config.oauth.facebook.clientID,
-  clientSecret: config.oauth.facebook.clientSecret
-}, async (accessToken, refreshToken, profile, done) => {
+  clientSecret: config.oauth.facebook.clientSecret,
+  passReqToCallback: true
+}, async (req, accessToken, refreshToken, profile, done) => {
   try {
     console.log('profile', profile);
     console.log('accessToken', accessToken);
     console.log('refreshToken', refreshToken);
     
-    const existingUser = await User.findOne({ "facebook.id": profile.id });
-    if (existingUser) {
-      return done(null, existingUser);
-    }
-
-    const newUser = new User({
-      method: 'facebook',
-      facebook: {
+    if (req.user) {
+      // We're already logged in, time for linking account!
+      // Add Facebook's data to an existing account
+      req.user.methods.push('facebook')
+      req.user.facebook = {
         id: profile.id,
         email: profile.emails[0].value
       }
-    });
+      await req.user.save();
+      return done(null, req.user);
+    } else {
+      // We're in the account creation process
+      let existingUser = await User.findOne({ "facebook.id": profile.id });
+      if (existingUser) {
+        return done(null, existingUser);
+      }
 
-    await newUser.save();
-    done(null, newUser);
+      // Check if we have someone with the same email
+      existingUser = await User.findOne({ "local.email": profile.emails[0].value })
+      if (existingUser) {
+        // We want to merge facebook's data with local auth
+        existingUser.methods.push('facebook')
+        existingUser.facebook = {
+          id: profile.id,
+          email: profile.emails[0].value
+        }
+        await existingUser.save()
+        return done(null, existingUser);
+      }
+
+      const newUser = new User({
+        methods: ['facebook'],
+        facebook: {
+          id: profile.id,
+          email: profile.emails[0].value
+        }
+      });
+
+      await newUser.save();
+      done(null, newUser);
+    }
   } catch(error) {
     done(error, false, error.message);
   }

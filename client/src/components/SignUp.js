@@ -3,7 +3,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import GoogleLogin from 'react-google-login';
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 
 import * as actions from '../actions';
 import CustomInput from './CustomInput';
@@ -77,14 +77,18 @@ class SignUp extends Component {
             </div>
             <FacebookLogin
               appId="string"
-              textButton="Facebook"
+              render={renderProps => (
+                <button style={{ marginRight: 15 }} className="btn btn-primary" onClick={renderProps.onClick}>Facebook</button>
+              )}
               fields="name,email,picture"
               callback={this.responseFacebook}
               cssClass="btn btn-outline-primary"
             />
             <GoogleLogin 
               clientId="string"
-              buttonText="Google"
+              render={renderProps => (
+                <button className="btn btn-danger" onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</button>
+              )}
               onSuccess={this.responseGoogle}
               onFailure={this.responseGoogle}
               className="btn btn-outline-danger"

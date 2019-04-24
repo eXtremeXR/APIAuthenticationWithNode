@@ -20,7 +20,19 @@ router.route('/oauth/google')
 router.route('/oauth/facebook')
   .post(passport.authenticate('facebookToken', { session: false }), UsersController.facebookOAuth);
 
-router.route('/secret')
-  .get(passportJWT, UsersController.secret);
+router.route('/oauth/link/google')
+  .post(passportJWT, passport.authorize('googleToken', { session: false }), UsersController.linkGoogle)
+
+router.route('/oauth/unlink/google')
+  .post(passportJWT, UsersController.unlinkGoogle);
+
+router.route('/oauth/link/facebook')
+  .post(passportJWT, passport.authorize('facebookToken', { session: false }), UsersController.linkFacebook)
+
+router.route('/oauth/unlink/facebook')
+  .post(passportJWT, UsersController.unlinkFacebook);
+
+router.route('/dashboard')
+  .get(passportJWT, UsersController.dashboard);
 
 module.exports = router;
