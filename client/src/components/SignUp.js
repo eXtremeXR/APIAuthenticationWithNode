@@ -76,7 +76,7 @@ class SignUp extends Component {
               Or sign up using third-party services
             </div>
             <FacebookLogin
-              appId="string"
+              appId="number"
               render={renderProps => (
                 <button style={{ marginRight: 15 }} className="btn btn-primary" onClick={renderProps.onClick}>Facebook</button>
               )}
@@ -85,7 +85,7 @@ class SignUp extends Component {
               cssClass="btn btn-outline-primary"
             />
             <GoogleLogin 
-              clientId="string"
+              clientId="number"
               render={renderProps => (
                 <button className="btn btn-danger" onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</button>
               )}

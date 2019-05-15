@@ -14,6 +14,9 @@ router.route('/signup')
 router.route('/signin')
   .post(validateBody(schemas.authSchema), passportSignIn, UsersController.signIn);
 
+router.route('/signout')
+  .get(passportJWT, UsersController.signOut);
+
 router.route('/oauth/google')
   .post(passport.authenticate('googleToken', { session: false }), UsersController.googleOAuth);
 
@@ -34,5 +37,8 @@ router.route('/oauth/unlink/facebook')
 
 router.route('/dashboard')
   .get(passportJWT, UsersController.dashboard);
+
+router.route('/status')
+  .get(passportJWT, UsersController.checkAuth);
 
 module.exports = router;

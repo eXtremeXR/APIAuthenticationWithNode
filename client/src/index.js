@@ -16,16 +16,15 @@ import reducers from './reducers';
 
 import authGuard from './components/HOCs/authGuard';
 
-const jwtToken = localStorage.getItem('JWT_TOKEN');
-axios.defaults.headers.common['Authorization'] = jwtToken;
+axios.defaults.withCredentials = true;
+
+/*
+  1) Disable the httpOnly property :(
+  2) Fire off a request on app load to the BE which will check if the user is auth-ed
+*/
 
 ReactDOM.render(
-  <Provider store={createStore(reducers, {
-    auth: {
-      token: jwtToken,
-      isAuthenticated: jwtToken ? true : false
-    }
-  }, applyMiddleware(reduxThunk))}>
+  <Provider store={createStore(reducers, {}, applyMiddleware(reduxThunk))}>
     <BrowserRouter>
       <App>
         <Route exact path="/" component={Home} />

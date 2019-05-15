@@ -12,17 +12,13 @@ import {
 
 export const oauthGoogle = data => {
   return async dispatch => {
-    const res = await axios.post('http://localhost:5000/users/oauth/google', {
+    await axios.post('http://localhost:5000/users/oauth/google', {
       access_token: data
     });
 
     dispatch({
-      type: AUTH_SIGN_UP,
-      payload: res.data
+      type: AUTH_SIGN_UP
     });
-
-    localStorage.setItem('JWT_TOKEN', res.data.token);
-    axios.defaults.headers.common['Authorization'] = res.data.token;
   };
 }
 
@@ -76,32 +72,24 @@ export const unlinkFacebook = data => {
 
 export const oauthFacebook = data => {
   return async dispatch => {
-    const res = await axios.post('http://localhost:5000/users/oauth/facebook', {
+    await axios.post('http://localhost:5000/users/oauth/facebook', {
       access_token: data
     });
 
     dispatch({
-      type: AUTH_SIGN_UP,
-      payload: res.data
+      type: AUTH_SIGN_UP
     });
-
-    localStorage.setItem('JWT_TOKEN', res.data.token);
-    axios.defaults.headers.common['Authorization'] = res.data.token;
   };
 }
 
 export const signUp = data => {
   return async dispatch => {
     try {
-      const res = await axios.post('http://localhost:5000/users/signup', data);
+      await axios.post('http://localhost:5000/users/signup', data);
 
       dispatch({
-        type: AUTH_SIGN_UP,
-        payload: res.data
+        type: AUTH_SIGN_UP
       });
-
-      localStorage.setItem('JWT_TOKEN', res.data.token);
-      axios.defaults.headers.common['Authorization'] = res.data.token;
     } catch(err) {
       dispatch({
         type: AUTH_ERROR,
@@ -114,20 +102,32 @@ export const signUp = data => {
 export const signIn = data => {
   return async dispatch => {
     try {
-      const res = await axios.post('http://localhost:5000/users/signin', data);
+      await axios.post('http://localhost:5000/users/signin', data);
 
       dispatch({
-        type: AUTH_SIGN_IN,
-        payload: res.data
+        type: AUTH_SIGN_IN
       });
-
-      localStorage.setItem('JWT_TOKEN', res.data.token);
-      axios.defaults.headers.common['Authorization'] = res.data.token;
     } catch(err) {
       dispatch({
         type: AUTH_ERROR,
         payload: 'Email and password combination isn\'t valid'
       })
+    }
+  };
+}
+
+export const checkAuth = () => {
+  return async dispatch => {
+    try {
+      await axios.get('http://localhost:5000/users/status');
+
+      dispatch({
+        type: AUTH_SIGN_IN
+      });
+
+      console.log('user is auth-ed')
+    } catch(err) {
+      console.log('error', err)
     }
   };
 }
@@ -149,13 +149,11 @@ export const getDashboard = () => {
 }
 
 export const signOut = () => {
-  return dispatch => {
-    localStorage.removeItem('JWT_TOKEN');
-    axios.defaults.headers.common['Authorization'] = '';
+  return async dispatch => {
+    await axios.get('http://localhost:5000/users/signout');
 
     dispatch({
-      type: AUTH_SIGN_OUT,
-      payload: ''
+      type: AUTH_SIGN_OUT
     })
   };
 }

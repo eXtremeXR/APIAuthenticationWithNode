@@ -22,7 +22,12 @@ module.exports = {
     }
 
     // Is there a Google account with the same email?
-    foundUser = await User.findOne({ "google.email": email });
+    foundUser = await User.findOne({ 
+      $or: [
+        { "google.email": email },
+        { "facebook.email": email },
+      ] 
+    });
     if (foundUser) {
       // Let's merge them?
       foundUser.methods.push('local')
@@ -34,24 +39,27 @@ module.exports = {
       // Generate the token
       const token = signToken(foundUser);
       // Respond with token
-      res.status(200).json({ token });
+      res.cookie('access_token', token, {
+        httpOnly: true
+      });
+      res.status(200).json({ success: true });
     }
 
     // Is there a Google account with the same email?
-    foundUser = await User.findOne({ "facebook.email": email });
-    if (foundUser) {
-      // Let's merge them?
-      foundUser.methods.push('local')
-      foundUser.local = {
-        email: email, 
-        password: password
-      }
-      await foundUser.save()
-      // Generate the token
-      const token = signToken(foundUser);
-      // Respond with token
-      res.status(200).json({ token });
-    }
+    // foundUser = await User.findOne({ "facebook.email": email });
+    // if (foundUser) {
+    //   // Let's merge them?
+    //   foundUser.methods.push('local')
+    //   foundUser.local = {
+    //     email: email, 
+    //     password: password
+    //   }
+    //   await foundUser.save()
+    //   // Generate the token
+    //   const token = signToken(foundUser);
+    //   // Respond with token
+    //   res.status(200).json({ token });
+    // }
     
     // Create a new user
     const newUser = new User({ 
@@ -66,21 +74,35 @@ module.exports = {
 
     // Generate the token
     const token = signToken(newUser);
-    // Respond with token
-    res.status(200).json({ token });
+    // Send a cookie containing JWT
+    res.cookie('access_token', token, {
+      httpOnly: true
+    });
+    res.status(200).json({ success: true });
   },
 
   signIn: async (req, res, next) => {
     // Generate token
     const token = signToken(req.user);
-    res.status(200).json({ token });
+    res.cookie('access_token', token, {
+      httpOnly: true
+    });
+    res.status(200).json({ success: true });
+  },
+
+  signOut: async (req, res, next) => {
+    res.clearCookie('access_token');
+    // console.log('I managed to get here!');
+    res.json({ success: true });
   },
 
   googleOAuth: async (req, res, next) => {
     // Generate token
-    console.log('req.user', req.user)
     const token = signToken(req.user);
-    res.status(200).json({ token });
+    res.cookie('access_token', token, {
+      httpOnly: true
+    });
+    res.status(200).json({ success: true });
   },
 
   linkGoogle: async (req, res, next) => {
@@ -114,7 +136,10 @@ module.exports = {
   facebookOAuth: async (req, res, next) => {
     // Generate token
     const token = signToken(req.user);
-    res.status(200).json({ token });
+    res.cookie('access_token', token, {
+      httpOnly: true
+    });
+    res.status(200).json({ success: true });
   },
 
   linkFacebook: async (req, res, next) => {
@@ -151,5 +176,10 @@ module.exports = {
       secret: "resource",
       methods: req.user.methods
     });
+  },
+
+  checkAuth: async (req, res, next) => {
+    console.log('I managed to get here!');
+    res.json({ success: true });
   }
 }
