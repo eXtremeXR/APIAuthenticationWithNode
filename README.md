@@ -32,6 +32,7 @@ Series link: [YouTube Playlist](https://www.youtube.com/watch?v=zx6jnaLuB9Q&list
 19. [Improving - Introduction](https://youtu.be/LmElmaidFWg)
 20. [Improving - Updating Dependencies](https://youtu.be/pnl1ecgDAYw)
 21. [Improving - Linking Accounts](https://youtu.be/7yAmV17ufUY)
+22. [Improving - Storing JWTs in Cookies](https://youtu.be/qPWkPZwMze0)
 
 ### To view desired branch for each episode simply clone this git repo
 
