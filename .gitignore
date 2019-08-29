@@ -9,3 +9,5 @@ npm-debug.log
 yarn-error.log
 .idea
 .nyc_output
+/target
+/.vscode
